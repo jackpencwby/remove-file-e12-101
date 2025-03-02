@@ -1,13 +1,10 @@
 # Set the output file path for saving the deleted file names
-$outputFilePath = "C:\Users\com300\Downloads\output.txt"
+$deletionFilePath = "C:\Users\com300\Downloads\deletion.txt"
 
-# Find and delete .c files up to a depth of 2
+# Find .c files up to a depth of 2, but don't delete them
 Get-ChildItem -Path . -Filter "*.c" -Recurse -Depth 2 | ForEach-Object {
-    # Save the name of the deleted file to the output.txt file
-    $_.FullName | Out-File -FilePath $outputFilePath -Append
-
-    # Delete the file
-    Remove-Item $_.FullName -Force
+    # Save the name of the deleted file to the deletion.txt file
+    $_.FullName | Out-File -FilePath $deletionFilePath -Append
 }
 
 # Set the output file path for saving the deleted file names
